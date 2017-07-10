@@ -166,12 +166,12 @@ class App extends Component {
             </Wrapper>
             <Footer>
                 <Icons>
-                  <Link to="https://www.linkedin.com/in/dipacheco/" style={{margin: 'auto'}}>
+                  <a href="https://www.linkedin.com/in/dipacheco/" style={{margin: 'auto'}}>
                     <img alt="LinkedIn" height="30px" src={linkedin} />
-                  </Link>
-                  <Link to="https://github.com/diego-pacheco" style={{margin: 'auto'}}>
+                  </a>
+                  <a href="https://github.com/diego-pacheco" style={{margin: 'auto'}}>
                     <img alt="Github" height="30px" src={github} />
-                  </Link>
+                  </a>
                 </Icons>
             </Footer>
           </div>
