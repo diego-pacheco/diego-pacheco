@@ -3,6 +3,7 @@ import Paper from 'material-ui/Paper'
 import styled from 'styled-components'
 import MediaQuery from 'react-responsive'
 import { Col, Row } from 'react-styled-flexboxgrid'
+import axios from 'axios'
 import avatar from './avatar2.jpg'
 
 const Img = styled.img`
@@ -67,27 +68,43 @@ const styleAvatarMobile = {
   overflow: 'hidden'
 };
 
-const content = {
-  title: 'DIEGO PACHECO SIRI',
-  subtitle: 'JAVASCRIPT DEVELOPER',
-  paragraphs: [
-    'Hi my name is Diego Pacheco, I\'m a 35 years old developer from Montevideo, Uruguay. I\'m a proud husband and father of two great boys: Manuel 4 years old and Lorenzo 3 months old baby.',
-    'I started working 14 years ago as a Junior LAMP developer and in the last four years I\'ve being focusing on web development with Javascript.',
-    'I describe myself as an easy going guy, a team player always willing to go the extra mile and help my team mates. Interested in evolving as a developer and keep learning new technologies/frameworks.',
-    'On my free time I enjoy spending time with my family and from time to time I like brewing my own beer.'
-  ]
-}
-
 class About extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      content: {
+        paragraphs: []
+      }
+    }
+    this.renderParagraphs = this.renderParagraphs.bind(this)
+  }
+
+  getInitialState () {
+    return {
+      content: {}
+    }
+  }
+
+  componentDidMount () {
+    axios.get(`https://murmuring-savannah-23784.herokuapp.com/api/v1/about`)
+    .then((response) => {
+      console.log(response.data)
+      this.setState({content: response.data.about})
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  }
   /*
-  * @param {Array} texts
-  * Returns all texts in the array as paragraphs for rendering
+  * Returns all texts in state.content.texts as paragraphs for rendering
   */
-  renderParagraphs (texts) {
-    return texts.map((text) => <p>{text}</p>)
+  renderParagraphs () {
+    const { paragraphs } = this.state.content
+    return paragraphs.map((text) => <p key={Math.random()}>{text}</p>)
   }
 
   render() {
+    const { content } = this.state
     return (
       <div>
         <MediaQuery query='(min-device-width: 624px)' minDeviceWidth={624}>
@@ -101,7 +118,7 @@ class About extends Component {
                 <Col xs={12} sm={12} md={9} lg={9}>
                   <Title>{content.title}</Title>
                   <SubTitle>{content.subtitle}</SubTitle>
-                  { this.renderParagraphs(content.paragraphs) }
+                  { this.renderParagraphs() }
                 </Col>
               </Row>
           </Paper>

@@ -3,6 +3,7 @@ import Paper from 'material-ui/Paper'
 import MediaQuery from 'react-responsive'
 import {Card, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import { Grid, Col, Row } from 'react-styled-flexboxgrid'
+import axios from 'axios'
 
 const style = {
   margin: '0 0 -100px',
@@ -15,38 +16,34 @@ const styleMobile = {
   fontSize: '13px'
 }
 
-const projects = [
-  {
-    title: 'Insure Street',
-    url: 'http://insurestreet.co/',
-    description: 'Actually working on this project as a NodeJS dev, maintaining the existing API and connecting third party APIs.',
-    image: 'insurestreet.jpg'
-  },
-  {
-    title: 'DKMS',
-    url: 'https://dkmsgetinvolved.org/',
-    description: 'Worked as a Node/React developer, developing the API to store the donors information and returning some stats. Also worked with another React developer on the registration app.',
-    image: 'dkms.jpg'
-  },
-  {
-    title: 'Our Harvest',
-    url: 'https://ourharvest.com/',
-    description: 'Worked in the frontend and backend side, maintaining existing code and adding new features, like loyalty points for recurring clients. Improvements to user experience.',
-    image: 'ourharvest.jpg'
-  },
-  {
-    title: 'Mirror App',
-    url: 'https://itunes.apple.com/uy/app/mirror-team-performance/id1013251717',
-    description: 'Migrated the existing Parse server to clients server, bug fixing and adding new features.',
-    image: 'mirror.jpg'
-  }
-]
-
 class Projects extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {projects: []}
+    this.renderProjects = this.renderProjects.bind(this)
+  }
+
+  getInitialState () {
+    return {
+      projects: []
+    }
+  }
+
+  componentDidMount () {
+    axios.get(`https://murmuring-savannah-23784.herokuapp.com/api/v1/projects`)
+    .then((response) => {
+      this.setState({projects: response.data.projects})
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  }
   /*
   * Returns the projects' markup for rendering
   */
   renderProjects () {
+    console.log(this.state)
+    const { projects } = this.state
     return projects.map((project) => {
       return (
         <Col xs={12} md={6} sm={6}>
@@ -87,8 +84,8 @@ class Projects extends Component {
             </Paper>
         </MediaQuery>
       </div>
-    );
+    )
   }
 }
 
-export default Projects;
+export default Projects
