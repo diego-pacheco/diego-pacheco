@@ -1,3 +1,4 @@
+import config from './config'
 import React, { Component } from 'react'
 import {
   Step,
@@ -57,7 +58,7 @@ class Jobs extends Component {
   }
 
   componentDidMount () {
-    axios.get(`https://murmuring-savannah-23784.herokuapp.com/api/v1/jobs`)
+    axios.get(`${config.apiUrl}/jobs`)
     .then((response) => {
       this.setState({jobs: response.data.jobs})
     })

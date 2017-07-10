@@ -1,3 +1,4 @@
+import config from './config'
 import React, { Component } from 'react'
 import Paper from 'material-ui/Paper'
 import MediaQuery from 'react-responsive'
@@ -30,7 +31,7 @@ class Projects extends Component {
   }
 
   componentDidMount () {
-    axios.get(`https://murmuring-savannah-23784.herokuapp.com/api/v1/projects`)
+    axios.get(`${config.apiUrl}/projects`)
     .then((response) => {
       this.setState({projects: response.data.projects})
     })

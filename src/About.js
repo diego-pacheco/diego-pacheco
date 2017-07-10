@@ -1,3 +1,4 @@
+import config from './config'
 import React, { Component } from 'react'
 import Paper from 'material-ui/Paper'
 import styled from 'styled-components'
@@ -86,7 +87,7 @@ class About extends Component {
   }
 
   componentDidMount () {
-    axios.get(`https://murmuring-savannah-23784.herokuapp.com/api/v1/about`)
+    axios.get(`${config.apiUrl}/about`)
     .then((response) => {
       console.log(response.data)
       this.setState({content: response.data.about})
