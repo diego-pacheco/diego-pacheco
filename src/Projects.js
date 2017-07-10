@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import Paper from 'material-ui/Paper'
-import styled from 'styled-components'
 import MediaQuery from 'react-responsive'
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import {Card, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import { Grid, Col, Row } from 'react-styled-flexboxgrid'
 
 const style = {
@@ -44,6 +43,9 @@ const projects = [
 ]
 
 class Projects extends Component {
+  /*
+  * Returns the projects' markup for rendering
+  */
   renderProjects () {
     return projects.map((project) => {
       return (
@@ -63,7 +65,7 @@ class Projects extends Component {
       )
     })
   }
-  render(props) {
+  render() {
     return (
       <div>
         <MediaQuery query='(min-device-width: 624px)' minDeviceWidth={624}>

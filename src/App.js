@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme'
-import FlatButton from 'material-ui/FlatButton'
 import { Grid, Col, Row } from 'react-styled-flexboxgrid'
 import MediaQuery from 'react-responsive'
 import LogoImage from './LogoImage'
@@ -63,12 +62,6 @@ const MenuButtons = styled.div`
 `
 
 const Credits = styled.div`
-  vertical-align: center;
-  text-align: center;
-  margin: 0;
-`
-
-const Back = styled.div`
   vertical-align: center;
   text-align: center;
   margin: 0;

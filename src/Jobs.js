@@ -12,10 +12,8 @@ import InfoIcon from 'material-ui/svg-icons/action/info'
 import {red500} from 'material-ui/styles/colors'
 import MediaQuery from 'react-responsive'
 import Paper from 'material-ui/Paper'
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 
-
-//@TODO: Move this to styled components
 const style = {
   margin: '0 0 -100px',
   padding: '20px 20px 50px'
@@ -139,28 +137,33 @@ const jobs = [
 
 class Jobs extends Component {
   state = {
-    finished: false,
     stepIndex: 0,
   };
-
+  /*
+  * Gets stepIndex from state and increments it so next step (Job) is shown
+  */
   handleNext = () => {
     const {stepIndex} = this.state;
     this.setState({
-      stepIndex: stepIndex + 1,
-      finished: stepIndex >= jobs.length - 1,
+      stepIndex: stepIndex + 1
     });
   };
-
+  /*
+  * Gets stepIndex from state and decrements it so previous step (Job) is shown
+  */
   handlePrev = () => {
     const {stepIndex} = this.state;
     if (stepIndex > 0) {
       this.setState({stepIndex: stepIndex - 1});
     }
   };
-
+  /*
+  * @param {Integer} step
+  * Returns to render the action buttons for each step
+  * Shows next back according to step param
+  */
   renderStepActions(step) {
     const {stepIndex} = this.state;
-
     return (
       <div style={{margin: '12px 0'}}>
         {step < jobs.length - 1 && (
@@ -185,6 +188,10 @@ class Jobs extends Component {
       </div>
     );
   }
+  /*
+  * @param  {Array} chips
+  * Returns for rendering chips markup
+  */
   renderChips (chips) {
     return chips.map((chip) => { 
       return (
@@ -199,8 +206,9 @@ class Jobs extends Component {
       )
     })
   }
+
   render() {
-    const {finished, stepIndex} = this.state;
+    const { stepIndex } = this.state;
     return (
       <div>
         <MediaQuery query='(min-device-width: 624px)' minDeviceWidth={624}>

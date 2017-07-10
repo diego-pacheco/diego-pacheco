@@ -2,23 +2,18 @@ import React, { Component } from 'react'
 import Paper from 'material-ui/Paper'
 import styled from 'styled-components'
 import MediaQuery from 'react-responsive'
-import { Grid, Col, Row } from 'react-styled-flexboxgrid'
+import { Col, Row } from 'react-styled-flexboxgrid'
 import avatar from './avatar2.jpg'
+
 const Img = styled.img`
   margin: auto;
 `
 
+//styled components for desktop
 const Title = styled.div`
   font-size: 42px;
   font-weight: 100;
   line-height: 44px;
-  color: #de3925;
-`
-
-const TitleMobile = styled.div`
-  font-size: 22px;
-  font-weight: 100;
-  line-height: 24px;
   color: #de3925;
 `
 
@@ -28,21 +23,24 @@ const SubTitle = styled.div`
   color: #de3925;
 `
 
+//styled components for mobile
+const TitleMobile = styled.div`
+  font-size: 22px;
+  font-weight: 100;
+  line-height: 24px;
+  color: #de3925;
+`
+
 const SubTitleMobile = styled.div`
   font-size: 14px;
   font-weight: 400;
   color: #de3925;
 `
 
-const style = {
+//styles for desktop
+const paperStyle = {
   margin: '0 0 -100px',
   padding: '20px 20px 50px'
-}
-
-const styleMobile = {
-  margin: '0 -45px -100px',
-  padding: '20px 20px 50px',
-  fontSize: '13px'
 }
 
 const styleAvatar = {
@@ -54,6 +52,12 @@ const styleAvatar = {
   overflow: 'hidden'
 };
 
+//styles for mobile
+const paperStyleMobile = {
+  margin: '0 -45px -100px',
+  padding: '20px 20px 50px',
+  fontSize: '13px'
+}
 const styleAvatarMobile = {
   height: 75,
   width: 75,
@@ -74,33 +78,36 @@ const content = {
   ]
 }
 
-const height = '230px'
-
 class About extends Component {
+  /*
+  * @param {Array} texts
+  * Returns all texts in the array as paragraphs for rendering
+  */
   renderParagraphs (texts) {
     return texts.map((text) => <p>{text}</p>)
   }
-  render(props) {
+
+  render() {
     return (
       <div>
         <MediaQuery query='(min-device-width: 624px)' minDeviceWidth={624}>
-          <Paper style={style} zDepth={3}>
-            <Row>
-              <Col  xs={12} sm={12} md={3} lg={3} style={{textAlign: 'center'}}>
-                <Paper style={styleAvatar} zDepth={1} circle={true}>
-                    <Img src={avatar} height="150px"/>
-                </Paper>
-              </Col>
-              <Col xs={12} sm={12} md={9} lg={9}>
-                <Title>{content.title}</Title>
-                <SubTitle>{content.subtitle}</SubTitle>
-                { this.renderParagraphs(content.paragraphs) }
-              </Col>
-            </Row>
+          <Paper style={paperStyle} zDepth={3}>
+              <Row>
+                <Col  xs={12} sm={12} md={3} lg={3} style={{textAlign: 'center'}}>
+                  <Paper style={styleAvatar} zDepth={1} circle={true}>
+                      <Img src={avatar} height="150px"/>
+                  </Paper>
+                </Col>
+                <Col xs={12} sm={12} md={9} lg={9}>
+                  <Title>{content.title}</Title>
+                  <SubTitle>{content.subtitle}</SubTitle>
+                  { this.renderParagraphs(content.paragraphs) }
+                </Col>
+              </Row>
           </Paper>
         </MediaQuery>
         <MediaQuery query='(max-device-width: 623px)' maxDeviceWidth={623}>
-          <Paper style={styleMobile} zDepth={3}>
+          <Paper style={paperStyleMobile} zDepth={3}>
             <Row>
               <Col  xs={12} sm={12} md={3} lg={3} style={{textAlign: 'center'}}>
                 <Paper style={styleAvatarMobile} zDepth={1} circle={true}>
@@ -116,8 +123,8 @@ class About extends Component {
           </Paper>
         </MediaQuery>
       </div>
-    );
+    )
   }
 }
 
-export default About;
+export default About
