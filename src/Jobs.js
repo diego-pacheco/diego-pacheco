@@ -113,6 +113,27 @@ const jobs = [
     },{
       tech: 'HTML5'
     }]
+  },
+  {
+    company: 'SX Networks',
+    from: 'Montevideo, Uruguay — Apr 2003 - Feb 2008',
+    description: 'As a Jr PHP developer, I started building small PHP/HTML sites. Over time I developed their first casino referal panel, where stats and payments where processed. Also I was involved in the development the first hispanic community web: Wamba.',
+    job: 'LAMP Developer',
+    avatar: 'sx.jpg',
+    index: 3,
+    chips: [{
+      tech: 'PHP'
+    },{
+      tech: 'MySQL'
+    },{
+      tech: 'SVN'
+    },{
+      tech: 'PostgreSQL'
+    },{
+      tech: 'JQuery'
+    },{
+      tech: 'HTML5'
+    }]
   }
 ]
 
