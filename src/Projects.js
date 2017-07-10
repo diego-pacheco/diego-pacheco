@@ -43,11 +43,10 @@ class Projects extends Component {
   * Returns the projects' markup for rendering
   */
   renderProjects () {
-    console.log(this.state)
     const { projects } = this.state
     return projects.map((project) => {
       return (
-        <Col xs={12} md={6} sm={6}>
+        <Col xs={12} md={6} sm={6} key={Math.random()}>
           <Card>
             <CardMedia
               overlay={<CardTitle title={project.title}

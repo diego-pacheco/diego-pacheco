@@ -89,7 +89,6 @@ class About extends Component {
   componentDidMount () {
     axios.get(`${config.apiUrl}/about`)
     .then((response) => {
-      console.log(response.data)
       this.setState({content: response.data.about})
     })
     .catch((err) => {
